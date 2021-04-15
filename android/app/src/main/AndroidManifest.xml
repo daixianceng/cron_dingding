@@ -1,8 +1,23 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.deeplusplus.cron_dingding">
-   <application
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+    <application
         android:label="自动打卡"
         android:icon="@mipmap/ic_launcher">
+        <receiver
+            android:enabled="true"
+            android:exported="true" 
+            android:name="com.deeplusplus.cron_dingding.MainActivityReceiver"
+            android:permission="android.permission.RECEIVE_BOOT_COMPLETED">
+
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </receiver>
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
