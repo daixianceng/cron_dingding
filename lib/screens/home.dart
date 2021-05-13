@@ -61,7 +61,14 @@ class _HomeState extends State<Home> {
     return Scaffold(
       appBar: AppBar(
         title: Text('定时器列表'),
-        actions: [],
+        actions: [
+          IconButton(
+            onPressed: () {
+              _showHelpDialog();
+            },
+            icon: Icon(Icons.help),
+          )
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -69,7 +76,7 @@ class _HomeState extends State<Home> {
             form: TaskModel.fromJson({
               'id': UniqueKey().toString(),
               'name': '',
-              'schedule': '',
+              'schedule': '55 8,17 * * 1-5',
               'active': true,
             }),
             callback: (TaskModel model) {
@@ -217,6 +224,32 @@ class _HomeState extends State<Home> {
               ],
             );
           },
+        );
+      },
+    );
+  }
+
+  _showHelpDialog() {
+    showDialog(
+      context: context,
+      builder: (_) {
+        return AlertDialog(
+          title: Text('使用前必读！！！'),
+          content: Container(
+              child: Text(
+            '''
+【工作原理】
+  1. 保持屏幕常亮
+  2. 定时启动钉钉
+
+【条件】
+  1. 一个闲置安卓手机，确保时间正确
+  2. 让手机保持最低消耗状态（移除锁屏、关闭声音、卸载无关的软件、屏幕亮度最低、深色模式）
+  3. 设置钉钉【极速打卡】，确保打开钉钉能够【立即打卡】
+  4. 安装本应用，新增定时器，并保持本应用【始终显示】在主屏幕
+  5. 把手机藏在公司某个角落，记住不要锁在金属柜子里
+''',
+          )),
         );
       },
     );
