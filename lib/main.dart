@@ -29,7 +29,7 @@ class App extends StatelessWidget {
         title: '钉钉自动打卡',
         theme: lightTheme,
         darkTheme: darkTheme,
-        themeMode: ThemeMode.system,
+        themeMode: ThemeMode.dark,
         initialRoute: '/',
         routes: {
           '/': (context) => Home(),
