@@ -98,27 +98,23 @@ class _HomeState extends State<Home> {
             key: Key(tasks[index].id),
             actionPane: SlidableDrawerActionPane(),
             actionExtentRatio: 0.25,
-            child: Container(
-              color: Colors.white,
-              child: ListTile(
-                tileColor: theme.cardColor,
-                leading: CircleAvatar(
-                  foregroundColor: Colors.white,
-                  backgroundColor: tasks[index].active
-                      ? Colors.green.shade800
-                      : Colors.grey.shade700,
-                  child: tasks[index].active
-                      ? Icon(Icons.check)
-                      : Icon(Icons.close),
-                ),
-                title: Text(
-                  tasks[index].name,
-                  style: TextStyle(color: theme.textTheme.subtitle1!.color),
-                ),
-                subtitle: Text(
-                  tasks[index].schedule,
-                  style: TextStyle(color: theme.textTheme.headline1!.color),
-                ),
+            child: ListTile(
+              tileColor: theme.cardColor,
+              leading: CircleAvatar(
+                foregroundColor: Colors.white,
+                backgroundColor: tasks[index].active
+                    ? Colors.green.shade800
+                    : Colors.grey.shade700,
+                child:
+                    tasks[index].active ? Icon(Icons.check) : Icon(Icons.close),
+              ),
+              title: Text(
+                tasks[index].name,
+                style: TextStyle(color: theme.textTheme.subtitle1!.color),
+              ),
+              subtitle: Text(
+                tasks[index].schedule,
+                style: TextStyle(color: theme.textTheme.headline1!.color),
               ),
             ),
             actions: [
@@ -233,11 +229,13 @@ class _HomeState extends State<Home> {
     showDialog(
       context: context,
       builder: (_) {
-        return AlertDialog(
+        return const AlertDialog(
           title: Text('使用前必读！！！'),
-          content: Container(
+          content: SingleChildScrollView(
               child: Text(
             '''
+本软件受 crontab 启发
+
 【工作原理】
   1. 保持屏幕常亮
   2. 定时启动钉钉
@@ -248,7 +246,12 @@ class _HomeState extends State<Home> {
   3. 设置钉钉【极速打卡】，确保打开钉钉能够【立即打卡】
   4. 安装本应用，新增定时器，并保持本应用【始终显示】在主屏幕
   5. 把手机藏在公司某个角落，记住不要锁在金属柜子里
+
+【Deeplusplus.com 出品】
+  玩一玩“黑色数学”和“极简钢琴”，就是对我们的最大支持!
+  非常好玩！！！
 ''',
+            style: TextStyle(fontSize: 13.0, height: 1.8),
           )),
         );
       },
